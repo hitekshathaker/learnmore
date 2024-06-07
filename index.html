@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Registration Form</h1>
+            <form id="registrationForm">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required><br>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select><br>
+
+                <label for="skills">Skills:</label>
+                <input type="text" id="skills" name="skills" placeholder="e.g., JavaScript, HTML, CSS"><br>
+
+                <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="data-container" id="displayData" style="display: none;">
+            <h2>Registered Data:</h2>
+            <table id="dataTable" border="1">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>Skills</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Registered data will be appended here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const gender = document.getElementById('gender').value;
+            const skills = document.getElementById('skills').value;
+
+            const table = document.getElementById('dataTable').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+
+            cell1.innerText = firstName;
+            cell2.innerText = lastName;
+            cell3.innerText = email;
+            cell4.innerText = gender;
+            cell5.innerText = skills;
+
+            document.getElementById('displayData').style.display = 'block';
+
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+</html>
